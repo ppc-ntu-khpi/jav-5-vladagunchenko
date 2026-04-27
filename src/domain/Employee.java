@@ -1,6 +1,16 @@
 package domain;
+
+/**
+ * Клас, що представляє загальну модель співробітника компанії
+ * @author Vlada
+ * @version 1.0
+ */
 public class Employee {
 
+    /**
+     * Повертає інформацію про співробітника у вигляді рядка
+     * @return String представлення об'єкта
+     */
     @Override
     public String toString() {
         return "\nEmployee ID= " + ID + "\nName= " + name + "\nJobTitle= " + jobTitle + "\nLevel= " + level + "\nDept= " + dept;
@@ -12,8 +22,13 @@ public class Employee {
     private int level;
     private String dept;
 
-   // private static int employeesCount = 0;
-
+    /**
+     * Конструктор для створення нового співробітника з параметрами
+     * @param name Ім'я співробітника
+     * @param jobTitle Посада
+     * @param level Рівень (1-3)
+     * @param dept Відділ
+     */
     public Employee(String name, String jobTitle, int level, String dept) {
         this();
         setName(name);
@@ -30,25 +45,41 @@ public class Employee {
         this.dept = dept;
     }
 
+    /**
+     * Конструктор за замовчуванням, що генерує випадковий ID
+     */
     public Employee() {
         ID = (int)(Math.random()*1000);
-//        if (ID > 10000) {
-//            throw new NumberFormatException("ERROR! Employee's ID cannot be greater than 10000. Employee is not created!");
-//        }
     }
 
+    /**
+     * Встановлює посаду співробітника
+     * @param job назва посади
+     */
     public void setJobTitle(String job) {
         jobTitle = job;
     }
 
+    /**
+     * Повертає посаду співробітника
+     * @return String посада
+     */
     public String getJobTitle() {
         return jobTitle;
     }
 
+    /**
+     * Повертає ім'я співробітника
+     * @return String ім'я
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Встановлює рівень кваліфікації співробітника (1, 2 або 3)
+     * @param level рівень кваліфікації
+     */
     public void setLevel(int level) {
         switch (level) {
             case 1:
@@ -61,31 +92,35 @@ public class Employee {
         }
     }
 
+    /**
+     * Повертає рівень кваліфікації співробітника
+     * @return int рівень
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     * Повертає назву відділу
+     * @return String відділ
+     */
     public String getDept() {
         return dept;
     }
 
+    /**
+     * Встановлює відділ для співробітника
+     * @param dept назва відділу
+     */
     public void setDept(String dept) {
         this.dept = dept;
     }
 
+    /**
+     * Встановлює ім'я співробітника з перевіркою на валідність через регулярний вираз
+     * @param name повне ім'я
+     */
     public void setName(String name) {
-//        boolean correctName = true;
-//        for (int i = 0; i < name.length(); i++) {
-//            char s = name.charAt(i);
-//            if (Character.isDigit(s)) {
-//                correctName = false;
-//            }
-//        }
-//        if (correctName) {
-//            this.name = name;
-//        } else {
-//            this.name = "John Doe";
-//        }
         if (name.matches("^([a-zA-Z]+[\\'\\,\\.\\-]?[a-zA-Z ]*)+[ ]([a-zA-Z]+[\\'\\,\\.\\-]?[a-zA-Z ]+)+$")) {
             this.name = name;
         } else {
